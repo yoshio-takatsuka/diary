@@ -1,0 +1,96 @@
+<div class="wrapper">
+
+    <!-- assets/img/clouds.png -->
+
+    <div class="page-header" style="background-image: url('./assets/img/antoine-barres.jpg');">
+        <div class="filter"></div>
+        <div class="moving-clouds" style="background-image: url('assets/img/clouds.png'); "></div>
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
+                    <!-- ↓枠定義 card-diary　-->
+                    <!-- <div class="card" > -->
+                    <div class="card card-diary" style="width: 30rem;">
+                        <h3 class="title">家　計　簿 ver220213</h3>
+
+                        <form class="register-form" #registerDiaryForm="ngForm"
+                            (ngSubmit)="registerDiary(registerDiaryForm)">
+                            <div>
+                                <label>日付</label>
+                                <div class="input-group form-group-no-border">
+                                    <input ngModel name="p_date" type="date" class="form-control" 
+                                        pattern="^(?!([02468][1235679]|[13579][01345789])000229)(([0-9]{4}(01|03|05|07|08|10|12)(0[1-9]|[12][0-9]|3[01]))|([0-9]{4}(04|06|09|11)(0[1-9]|[12][0-9]|30))|([0-9]{4}02(0[1-9]|1[0-9]|2[0-8]))|([0-9]{2}([02468][048]|[13579][26])0229))$"
+                                        placeholder="日付" required />
+                                </div>
+                                <button class="btn btn-danger btn-block btn-round" (click)="serch(registerDiaryForm)" ng-disabled="checkValue"
+                                    type="submit">検索</button>
+                            </div>
+
+
+                            <label>予定情報</label>
+                            <div class="input-group ">
+                                <textarea ngModel name="yotei_data" type="text" class="form-control"
+                                    aria-label="With textarea" placeholder="予定情報" required></textarea>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <label>起床時間</label>
+                                    <div class="input-group form-group-no-border">
+                                        <input ngModel name="wake_time" type="time" class="form-control"
+                                            placeholder="起床時間" required />
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label>就寝時間</label>
+                                    <div class="input-group form-group-no-border">
+                                        <input ngModel name="sleep_time" type="time" class="form-control"
+                                            placeholder="就寝時間" required />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label>勤務開始</label>
+                                    <div class="input-group form-group-no-border">
+                                        <input ngModel name="bz_startTime" type="time" class="form-control"
+                                            placeholder="勤務開始" required />
+                                    </div>
+
+                                </div>
+                                <div class="col">
+                                    <label>勤務終了</label>
+                                    <div class="input-group form-group-no-border">
+                                        <input ngModel name="bz_endTime" type="time" class="form-control"
+                                            placeholder="勤務終了" required />
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <label>日記</label>
+                            <div class="input-group ">
+                                <textarea ngModel name="diary_data" type="text" class="form-control"
+                                    aria-label="With textarea" placeholder="日記" required></textarea>
+                            </div>
+
+
+                            <button class="btn btn-danger btn-block btn-round" type="submit">登録</button>
+                        </form>
+                        <br />
+                        <div *ngIf="errors && errors.length>0" class="alert alert-danger">
+                            <p *ngFor="let error of errors">{{ error.detail }}</p>
+                        </div>
+                        <div class="forgot">
+                            <a [routerLink]="['/login']" class="btn btn-link btn-danger">ログインはこちら</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

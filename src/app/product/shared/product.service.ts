@@ -12,9 +12,18 @@ export class ProductService {
   getProducts(): Observable<any> {
     return this.http.get('/api/v1/products')
   }
-
-  getProductById(productId: string): Observable<any> {
-    return this.http.get('/api/v1/products/' + productId)
+  // 日記情報更新
+  diary(userData: any): Observable<any> {
+    return this.http.post('/api/v1/diaries/register' , userData)
   }
+ 
+
+  getDairy(p_date: string): Observable<any> {
+    return this.http.get('/api/v1/diaries/' + p_date)
+  }
+
+  // getProductById(productId: string): Observable<any> {
+  //   return this.http.get('/api/v1/products/' + productId)
+  // }
 
 }

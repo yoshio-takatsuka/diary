@@ -1,7 +1,8 @@
 <div class="wrapper">
 
+<!-- assets/img/clouds.png -->
 
-    <div class="page-header" style="background-image: url('./assets/img/login-image.jpg');">
+    <div class="page-header" style="background-image: url('./assets/img/antoine-barres.jpg');">
         <div class="filter"></div>
         <div class="moving-clouds" style="background-image: url('assets/img/clouds.png'); "></div>
         <div class="container">
@@ -13,7 +14,7 @@
                      <!-- <div class="card card-diary" style="width: 30rem;"> -->
                         <h3 class="title">家　計　簿 ver220213</h3>
 
-                        <form class="register-form" #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+                        <form class="register-form" #registerDiaryForm="ngForm" (ngSubmit)="registerDiary(registerDiaryForm)">
                             <div>
                                 <label>日付</label>
                                 <div class="input-group form-group-no-border">
@@ -27,7 +28,7 @@
                                         required 
                                     />
                                 </div>
-                                <button  class="btn btn-danger btn-block btn-round" (click)="Serch(registerForm)"
+                                <button  class="btn btn-danger btn-block btn-round" (click)="Serch(registerDiaryForm)"
                                 type="submit">検索</button>
                             </div>    
 

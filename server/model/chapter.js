@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 // const ObjectId = Schema.ObjectId;
  
-const ProductSchema = new Schema({
+const ChaptersSchema = new Schema({
   // author: ObjectId,
   coverImage: String,
   name: { type: String, required: true, max:[60, '最大60文字までです'] },
@@ -16,4 +16,4 @@ const ProductSchema = new Schema({
   headingtext3: String,
 })
 
-module.exports = mongoose.model('Product', ProductSchema)
+module.exports = mongoose.model('Chapter', ChaptersSchema)

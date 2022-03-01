@@ -1,23 +1,56 @@
-import { Component, OnInit,  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { kakeibos } from '../../diary/kakibos';
 import { ProductService } from '../shared/product.service';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-diary',
   templateUrl: './diary.component.html',
   styleUrls: ['./diary.component.scss']
 })
-export class DiaryComponent implements OnInit {
+export class DiaryComponent  {
   errors: any = []
-  diaries: any = []    // 日記情報
+
   data: Array<any>;
-  checkValue = true
+  checkValue1 = false // 検索
+
+  // diary の初期値
+  p_date = new FormControl('', [
+    Validators.required,
+    // Validators.pattern('^(?!([02468][1235679]|[13579][01345789])000229)(([0-9]{4}(01|03|05|07|08|10|12)(0[1-9]|[12][0-9]|3[01]))|([0-9]{4}(04|06|09|11)(0[1-9]|[12][0-9]|30))|([0-9]{4}02(0[1-9]|1[0-9]|2[0-8]))|([0-9]{2}([02468][048]|[13579][26])0229))$')
+  ]);
+  yoteiData = new FormControl( '',[
+  ]);
+  wakeTime = new FormControl('', [
+  ]);
+  sleepTime = new FormControl('', [
+  ]);
+  bzStartTime = new FormControl('HH:mm', [
+  ]);
+  bzEndTime = new FormControl('HH:mm', [
+  ]);
+  diaryData = new FormControl('日記', [
+  ]);
+  chek1     = new FormControl(false,[
+  ]);
+  myDiary = this.builder.group({
+    p_date: this.p_date,
+    yoteiData: this.yoteiData,
+    wakeTime: this.wakeTime,
+    sleepTime: this.sleepTime,
+    bzStartTime: this.bzStartTime,
+    bzEndTime: this.bzEndTime,
+    diaryData: this.diaryData
+
+    });
+
+
 
   constructor(
     private productService: ProductService,
     private router: Router,
+    private builder: FormBuilder
 
   ) {
   }
@@ -27,17 +60,17 @@ export class DiaryComponent implements OnInit {
 
     // 最初に動く処理
     // 検索のみ可とする
+    this.myDiary.get("chek1").patchValue("false")
+
+    // this.myDiary.get("chek1").patchValue(true)
     debugger
-    this.checkValue=true
-    let a ="aaa"
+    // this.yotei_data ="たぁ"
 
-
-  
   }
 
   // formの日記、家計簿、スキル情報を更新する 
-  registerDiary(diaryForm) {
-    debugger
+  registerDiary(myDiary) {
+
     let res = confirm("登録してもいいですかー？");
     if (res == true) {
     }
@@ -47,32 +80,41 @@ export class DiaryComponent implements OnInit {
       return;
     }
 
-    this.productService.diary(diaryForm.value).subscribe(
+    this.productService.diary(myDiary).subscribe(
       (result) => {
         console.log("Success!")
         // this.router.navigate(['/login'])
       },
       (err: HttpErrorResponse) => {
+        console.log("error")
         console.error(err)
         this.errors = err.error.errors
       }
     )
   }
-  // 該当日付の日記、家計簿、スキル情報を取得してくる 
-  serch(diaryForm) {
+  // 該当日付の日記情報を取得してくる 
+  serch(myDiary) {
 
-    this.productService.getDairy(diaryForm.value.p_date).subscribe(
+    const productsObservable = this.productService.getDairy(this.p_date.value)
+    productsObservable.subscribe(
       (result) => {
-        this.diaries = result.daiaies
+        this.checkValue1 = true
+        this.myDiary.get("chek1").patchValue("true")
+        // this.myDiary.get("chkDis").patchValue("false")
+        this.myDiary.get("yoteiData").patchValue(result.yoteiData)
+        this.myDiary.get("wakeTime").patchValue(result.wakeTime)
+        this.myDiary.get("sleepTime").patchValue(result.sleepTime)
+        this.myDiary.get("bzStartTime").patchValue(result.bzStartTime)
+        this.myDiary.get("bzEndTime").patchValue(result.bzEndTime)
+        this.myDiary.get("diaryData").patchValue(result.diaryData)
 
+    
         console.log("Success!")
-        // this.router.navigate(['/login'])
+
       },
-      (err: HttpErrorResponse) => {
-        console.error(err)
-        this.errors = err.error.errors
-      }
+      (err) => { console.error('次のエラーが発生しました: ' + err) }
     )
+
   }
 
 

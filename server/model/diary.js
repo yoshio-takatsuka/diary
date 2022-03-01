@@ -7,12 +7,12 @@ const Schema = mongoose.Schema
 const DiarySchema = new Schema({
   // author: ObjectId,
   p_date: String,          //
-  yotei_data: String,      // 予定情報
-  wake_time: String,       // 起床時間
-  sleep_time: String,      // 就寝時間
-  bz_startTime: String,    // 勤務時間　開始
-  bz_endTime: String,      // 勤務時間　終了
-  diary_data: String,      // 日記
+  yoteiData: String,      // 予定情報
+  wakeTime: String,       // 起床時間
+  sleepTime: String,      // 就寝時間
+  bzStartTime: String,    // 勤務時間　開始
+  bzEndTime: String,      // 勤務時間　終了
+  diaryData: String,      // 日記
 })
 
 module.exports = mongoose.model('Diary', DiarySchema)

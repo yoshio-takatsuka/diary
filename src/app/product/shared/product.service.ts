@@ -14,12 +14,12 @@ export class ProductService {
   }
   // 日記情報更新
   diary(userData: any): Observable<any> {
-    return this.http.post('/api/v1/diaries/register' , userData)
+    return this.http.post('/api/v1/diaries/register' , userData.value)
   }
  
 
   getDairy(p_date: string): Observable<any> {
-    return this.http.get('/api/v1/diaries/' + p_date)
+     return this.http.get('/api/v1/diaries/' + p_date)
   }
 
   // getProductById(productId: string): Observable<any> {

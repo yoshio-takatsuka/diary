@@ -24,30 +24,28 @@ router.get('/:p_date',  function (req, res) {
     if (err) {
       return res.status(422).send({ errors: [{ title: 'Diary error', detail: 'Diary not found!' }] })
     }
-
-    Diaryinf = res.json(foundDiary[0])
-  })
-  // 家計簿情報
-  Kakeibo.find({p_date: p_date}, function (err, foundKakeibo) {
-    if (err) {
-      console.log("kakeibo db error->" + { errors: [{ title: 'Diary error', detail: 'Diary not found!' }] })
-    }
+    if (foundDiary.length == 0 )  {
+      return ""      
   
-    Kakeiboinf = res.json(foundKakeibo)
-  })
-  // スキル情報
-  Skill.find({p_date: p_date}, function (err, foundSkill) {
-    if (err) {
-      console.log("Skill db error->" + { errors: [{ title: 'Diary error', detail: 'Diary not found!' }] })
+    } else {
+      return res.json(foundDiary[0])
     }
-    Skillinf = res.json(foundKakeibo)
+    
   })
 })
 
 
 router.post('/register', function (req, res) {
-  const { p_date, yotei_data, wake_time, sleep_time, bz_startTime, bz_endTime, diary_data } = req.body
-
+  const { p_date, yoteiData, wakeTime, sleepTime, bzStartTime, bzEndTime, diaryData } = req.body
+  // const p_date = req.body.p_date
+  // const yoteiData = req.body.yoteiData
+  // const wakeTime = req.body.wakeTime
+  // const sleepTime = req.body.sleepTime
+  // const bzStartTime = req.body.bzStartTime
+  // const bzEndTime = req.body.bzEndTime
+  // const diaryData = req.body.diaryData
+  
+  
   /* 上と下は同じ意味
   const username = req.body.username
   const email = req.body.email
@@ -64,7 +62,7 @@ router.post('/register', function (req, res) {
     }
     if (foundDiary) {
       // データがあれば削除し追加
-      // Updateでも一発でできそう
+      // Updateでも一発でできそう(あれば勝手にインサート？)
       //  参考Url https://qiita.com/takehilo/items/4b89f8ee432b0a06c691
       foundDiary.remove({ "p_date": p_date }, function (err) {
         if (err) {
@@ -73,7 +71,7 @@ router.post('/register', function (req, res) {
       }, false, true);
     }
     // データ追加
-    const diary = new Diary({ p_date, yotei_data, wake_time, sleep_time, bz_startTime, bz_endTime, diary_data })
+    const diary = new Diary({ p_date, yoteiData, wakeTime, sleepTime, bzStartTime, bzEndTime, diaryData })
     diary.save(function (err) {
       if (err) {
         return res.status(422).send({ errors: [{ title: 'User error', detail: 'Someting went wrong!' }] })

@@ -7,6 +7,7 @@ import { ProductService } from './shared/product.service';
 import { AuthGuard } from '../auth/shared/auth.guard';
 import { DiaryComponent } from './diary/diary.component';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule }   from '@angular/forms';
 
 const routes: Routes = [
   { 
@@ -30,7 +31,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     ProductService

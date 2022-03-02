@@ -1,5 +1,5 @@
 {
-  "name": "reservation-app",
+  "name": "diary-app",
   "version": "0.0.0",
   "engines": {
     "node": "16.13.0",

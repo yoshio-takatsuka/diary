@@ -26,9 +26,9 @@ export class DiaryComponent  {
   ]);
   sleepTime = new FormControl('', [
   ]);
-  bzStartTime = new FormControl('HH:mm', [
+  bzStartTime = new FormControl('', [
   ]);
-  bzEndTime = new FormControl('HH:mm', [
+  bzEndTime = new FormControl('', [
   ]);
   diaryData = new FormControl('日記', [
   ]);
@@ -60,11 +60,7 @@ export class DiaryComponent  {
 
     // 最初に動く処理
     // 検索のみ可とする
-    this.myDiary.get("chek1").patchValue("false")
 
-    // this.myDiary.get("chek1").patchValue(true)
-    debugger
-    // this.yotei_data ="たぁ"
 
   }
 
@@ -99,7 +95,7 @@ export class DiaryComponent  {
     productsObservable.subscribe(
       (result) => {
         this.checkValue1 = true
-        this.myDiary.get("chek1").patchValue("true")
+        // this.myDiary.get("chek1").patchValue("true")
         // this.myDiary.get("chkDis").patchValue("false")
         this.myDiary.get("yoteiData").patchValue(result.yoteiData)
         this.myDiary.get("wakeTime").patchValue(result.wakeTime)

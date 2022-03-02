@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "reservation-app": {
+    "diary-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/reservation-app",
+            "outputPath": "dist/diary-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -73,18 +73,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "reservation-app:build"
+            "browserTarget": "diary-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "reservation-app:build:production"
+              "browserTarget": "diary-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "reservation-app:build"
+            "browserTarget": "diary-app:build"
           }
         },
         "test": {
@@ -125,15 +125,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "reservation-app:serve"
+            "devServerTarget": "diary-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "reservation-app:serve:production"
+              "devServerTarget": "diary-app:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "reservation-app"
+  "defaultProject": "diary-app"
 }

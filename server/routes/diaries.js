@@ -25,7 +25,7 @@ router.get('/:p_date',  function (req, res) {
       return res.status(422).send({ errors: [{ title: 'Diary error', detail: 'Diary not found!' }] })
     }
     if (foundDiary.length == 0 )  {
-      return ""      
+      return res.json("")      
   
     } else {
       return res.json(foundDiary[0])

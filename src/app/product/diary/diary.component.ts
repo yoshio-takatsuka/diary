@@ -9,7 +9,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
   templateUrl: './diary.component.html',
   styleUrls: ['./diary.component.scss']
 })
-export class DiaryComponent  {
+export class DiaryComponent {
   errors: any = []
 
   data: Array<any>;
@@ -20,7 +20,7 @@ export class DiaryComponent  {
     Validators.required,
     // Validators.pattern('^(?!([02468][1235679]|[13579][01345789])000229)(([0-9]{4}(01|03|05|07|08|10|12)(0[1-9]|[12][0-9]|3[01]))|([0-9]{4}(04|06|09|11)(0[1-9]|[12][0-9]|30))|([0-9]{4}02(0[1-9]|1[0-9]|2[0-8]))|([0-9]{2}([02468][048]|[13579][26])0229))$')
   ]);
-  yoteiData = new FormControl( '',[
+  yoteiData = new FormControl('', [
   ]);
   wakeTime = new FormControl('', [
   ]);
@@ -32,7 +32,7 @@ export class DiaryComponent  {
   ]);
   diaryData = new FormControl('日記', [
   ]);
-  chek1     = new FormControl(false,[
+  chek1 = new FormControl(false, [
   ]);
   myDiary = this.builder.group({
     p_date: this.p_date,
@@ -43,7 +43,7 @@ export class DiaryComponent  {
     bzEndTime: this.bzEndTime,
     diaryData: this.diaryData
 
-    });
+  });
 
 
 
@@ -95,16 +95,24 @@ export class DiaryComponent  {
     productsObservable.subscribe(
       (result) => {
         this.checkValue1 = true
-        // this.myDiary.get("chek1").patchValue("true")
-        // this.myDiary.get("chkDis").patchValue("false")
-        this.myDiary.get("yoteiData").patchValue(result.yoteiData)
-        this.myDiary.get("wakeTime").patchValue(result.wakeTime)
-        this.myDiary.get("sleepTime").patchValue(result.sleepTime)
-        this.myDiary.get("bzStartTime").patchValue(result.bzStartTime)
-        this.myDiary.get("bzEndTime").patchValue(result.bzEndTime)
-        this.myDiary.get("diaryData").patchValue(result.diaryData)
+        if (result == "") {
+          this.myDiary.get("yoteiData").patchValue("")
+          this.myDiary.get("wakeTime").patchValue("")
+          this.myDiary.get("sleepTime").patchValue("")
+          this.myDiary.get("bzStartTime").patchValue("")
+          this.myDiary.get("bzEndTime").patchValue("")
+          this.myDiary.get("diaryData").patchValue("")
+        } else {
+          this.myDiary.get("yoteiData").patchValue(result.yoteiData)
+          this.myDiary.get("wakeTime").patchValue(result.wakeTime)
+          this.myDiary.get("sleepTime").patchValue(result.sleepTime)
+          this.myDiary.get("bzStartTime").patchValue(result.bzStartTime)
+          this.myDiary.get("bzEndTime").patchValue(result.bzEndTime)
+          this.myDiary.get("diaryData").patchValue(result.diaryData)
 
-    
+        }
+
+
         console.log("Success!")
 
       },

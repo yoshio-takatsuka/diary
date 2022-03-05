@@ -5,6 +5,7 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 import { AuthService } from 'src/app/auth/shared/auth.service';
 
 
+
 @Component({
     // 構成するコンポーネントは以下
     // selector そのコンポーネントが他のHTMLから参照されるときのタグ名になる。
@@ -19,6 +20,7 @@ import { AuthService } from 'src/app/auth/shared/auth.service';
 export class NavbarComponent implements OnInit {
   private toggleButton: any
   private sidebarVisible: boolean
+
 
   constructor(
       public location: Location, 

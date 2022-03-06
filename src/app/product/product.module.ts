@@ -8,6 +8,7 @@ import { AuthGuard } from '../auth/shared/auth.guard';
 import { DiaryComponent } from './diary/diary.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule }   from '@angular/forms';
+import { KakeiboComponent } from './kakeibo/kakeibo.component';
 
 const routes: Routes = [
   { 
@@ -15,7 +16,7 @@ const routes: Routes = [
     children: [
       { path: '', component: ProductListComponent },                            // 初期画面
       { path: 'diary', component: DiaryComponent, canActivate: [AuthGuard] },   // 日記
-      { path: 'kakeibo', component: DiaryComponent, canActivate: [AuthGuard] }, // 家計簿
+      { path: 'kakeibo', component: KakeiboComponent, canActivate: [AuthGuard] }, // 家計簿
       { path: 'skill', component: DiaryComponent, canActivate: [AuthGuard] },   // スキル
     ]
   }
@@ -26,7 +27,8 @@ const routes: Routes = [
   declarations: [
     ProductComponent,
     ProductListComponent,
-    DiaryComponent
+    DiaryComponent,
+    KakeiboComponent
   ],
   imports: [
     RouterModule.forChild(routes),

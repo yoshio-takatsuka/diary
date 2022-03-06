@@ -22,8 +22,13 @@ export class ProductService {
      return this.http.get('/api/v1/diaries/' + p_date)
   }
 
-  // getProductById(productId: string): Observable<any> {
-  //   return this.http.get('/api/v1/products/' + productId)
-  // }
-
+  // 家計簿情報更新
+  kekeibo(userData: any): Observable<any> {
+    return this.http.post('/api/v1/diaries/register' , userData.value)
+  }
+ 
+  // 家計簿情報検索
+  getkakeibo(p_date: string): Observable<any> {
+     return this.http.get('/api/v1/diaries/' + p_date)
+  }
 }

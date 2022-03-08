@@ -14,19 +14,15 @@
                     <div class="card card-kakeibo" style="width: 30rem;">
                         <h3 class="title">家　計　簿 20220307</h3>
 
-                        <form [formGroup]="myKakeibo" class="register-form">
+                        <form [formGroup]="myKakeiboForm" class="register-form">
 
-                            <div>
-                                <label>日付</label>
-                                <div class="input-group form-group-no-border">
-                                    <input name="p_date" type="date" class="form-control" formControl="p_date">
-                                </div>
-                                <button class="btn btn-danger btn-block btn-round" (click)="serch(myKakeibo)"
-                                    type="submit">検索</button>
+                            <!-- <div formGroupName="myKakeibo"> -->
+                            <label>日付</label>
+                            <div class="input-group form-group-no-border">
+                                <input name="p_date" type="date" class="form-control" formControlName="p_date">
                             </div>
-
-
-
+                            <button class="btn btn-danger btn-block btn-round" (click)="serch(myKakeiboForm)"
+                                type="submit">検索</button>
                             <!--  -->
                             <label>出金簿</label>
                             <table class="table">
@@ -40,95 +36,70 @@
                                         <th>金額</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    <tr formArrayName="kakeibos"
+                                        *ngFor="let kekeibo of kekeibos.controls; let i = index" [formGroupName]="i">
 
-                                <div formArrayName="kakeibos">
-
-
-                                    <tbody>
-                                        <tr *ngFor="let kekeibo of kekeibos.controls; let i = index">
-                                            <div formGroupName="i">
-
-                                                <td>
-                                                    <div class="col">
-                                                        <div class="input-group form-group-no-border">
-                                                            <input name="time" type="time" class="form-control"
-                                                                placeholder="家計簿時刻" formControl="kakeboTime" />
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="col">
-                                                        <div class="input-group form-group-no-border">
-                                                            <input name="kakeboKamoku" type="text" class="form-control"
-                                                                placeholder="家計簿科目" formControl="kakeboKamoku" />
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="col">
-                                                        <div class="input-group form-group-no-border">
-                                                            <input name="kakeboDetail" type="text" class="form-control"
-                                                                placeholder="家計簿詳細" formControl="kakeboDetail" />
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="col">
-                                                        <div class="input-group form-group-no-border">
-                                                            <input name="kakeboEtc" type="text" class="form-control"
-                                                                placeholder="家計簿その他" formControl="kakeboEtc" />
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="col">
-                                                        <div class="input-group form-group-no-border">
-                                                            <input name="kakeboPayKbn" type="text" class="form-control"
-                                                                placeholder="家計簿支払区分" formControl="kakeboPayKbn" />
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="col">
-                                                        <div class="input-group form-group-no-border">
-                                                            <input ngModel name="kakeboKingaku" type="number"
-                                                                class="form-control" placeholder="家計簿金額"
-                                                                formControl="kakeboKingaku" />
-                                                        </div>
-                                                    </div>
-                                                </td>
+                                        <td>
+                                            <div class="col">
+                                                <div class="input-group form-group-no-border">
+                                                    <input name="time" type="time" class="form-control"
+                                                        placeholder="家計簿時刻" formControlName="kakeboTime" />
+                                                </div>
                                             </div>
+                                        </td>
+                                        <td>
+                                            <div class="col">
+                                                <div class="input-group form-group-no-border">
+                                                    <input name="kakeboKamoku" type="text" class="form-control"
+                                                        placeholder="家計簿科目" formControlName="kakeboKamoku" />
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="col">
+                                                <div class="input-group form-group-no-border">
+                                                    <input name="kakeboDetail" type="text" class="form-control"
+                                                        placeholder="家計簿詳細" formControlName="kakeboDetail" />
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="col">
+                                                <div class="input-group form-group-no-border">
+                                                    <input name="kakeboEtc" type="text" class="form-control"
+                                                        placeholder="家計簿その他" formControlName="kakeboEtc" />
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="col">
+                                                <div class="input-group form-group-no-border">
+                                                    <input name="kakeboPayKbn" type="text" class="form-control"
+                                                        placeholder="家計簿支払区分" formControlName="kakeboPayKbn" />
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="col">
+                                                <div class="input-group form-group-no-border">
+                                                    <input ngModel name="kakeboKingaku" type="number"
+                                                        class="form-control" placeholder="家計簿金額"
+                                                        formControlName="kakeboKingaku" />
+                                                </div>
+                                            </div>
+                                        </td>
 
-                                        </tr>
-                                    </tbody>
-                                </div>
+                                    </tr>
+                                </tbody>
+
                             </table>
                             <!--  -->
-
-
-
-                            <button class="btn btn-danger btn-block btn-round" (click)="registerKakeibo(myKakeibo)"
+                            <button class="btn btn-danger btn-block btn-round" (click)="registerKakeibo(myKakeiboForm)"
                                 type="submit">登録</button>
-
-
                             <button class="btn btn-danger btn-block btn-round" (click)="addKakeibo()"
-                                ype="submit">追加</button>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                type="submit">追加</button>
+                            <!-- </div> -->
                         </form>
                         <br />
                         <div *ngIf="errors && errors.length>0" class="alert alert-danger">

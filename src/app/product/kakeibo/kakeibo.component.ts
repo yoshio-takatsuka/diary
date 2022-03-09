@@ -24,10 +24,9 @@ export class KakeiboComponent {
   myKakeiboForm: FormGroup;
 
   constructor(
-    private productService: ProductService,
+    private productService: ProductService,  // サーバー側に連絡
     private router: Router,
-    private builder: FormBuilder
-
+    private builder: FormBuilder             // formを設定
   ) {
 
     this.myKakeiboForm = this.builder.group({
@@ -43,10 +42,7 @@ export class KakeiboComponent {
 
   ngOnInit() {
 
-    // 最初に動く処理
-    // debugger
-    // this.myKakeibo = this.createmyKakeibo();
-    // debugger
+
   }
   /**
   * formArrayName を取得するために必要な Getter
@@ -64,41 +60,33 @@ export class KakeiboComponent {
     });
   }
 
-
-
-
   /**
   * formArrayName を取得するために必要な Getter
   * 
   * @return 家計簿情報 FormArray
   */
-  get kekeibos(): FormArray {
-    debugger
+  get kakeibos(): FormArray {
+    // debugger
     // console.log(JSON.stringify(this.myKakeiboForm, null, 2));
 
-    return this.myKakeiboForm.get('kekeibos') as FormArray;
+    return this.myKakeiboForm.get('kakeibos') as FormArray;
   }
-
-  // get kakeibos(): FormArray {
-  //   return <FormArray> this.myKakeiboForm.get('kakeibos');
- 
-  // }
 
   /**
    * 家計簿情報 入力フォームを1行追加する
    */
   addKakeibo() {
-    // Getter を用意したいので「this.kekeibos」でアクセス可能
-    debugger
-    this.kekeibos.push(this.createmyKakeibo());
+    // Getter を用意したいので「this.kakeibos」でアクセス可能
+    // debugger
+    this.kakeibos.push(this.createmyKakeibo());
   }
   /**
    * 家計簿情報 入力フォームを1行削除する
    */
    removeKakeibo(index: number) {
-    // Getter を用意したいので「this.kekeibos」でアクセス可能
+    // Getter を用意したいので「this.kakeibos」でアクセス可能
     debugger
-    this.kekeibos.removeAt(index);
+    this.kakeibos.removeAt(index);
   }
 
   // formの日記、家計簿、スキル情報を更新する 
@@ -113,7 +101,7 @@ export class KakeiboComponent {
       return;
     }
 
-    this.productService.kekeibo(myKakeiboForm).subscribe(
+    this.productService.kakeibo(myKakeiboForm).subscribe(
       (result) => {
         console.log("Success!")
         // this.router.navigate(['/login'])

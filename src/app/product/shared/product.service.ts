@@ -23,8 +23,9 @@ export class ProductService {
   }
 
   // 家計簿情報更新
-  kekeibo(userData: any): Observable<any> {
-    return this.http.post('/api/v1/diaries/register' , userData.value)
+  kakeibo(userData: any): Observable<any> {
+    return
+    // return this.http.post('/api/v1/diaries/register' , userData.value)
   }
  
   // 家計簿情報検索

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { ProductService } from '../shared/product.service';
-import { FormControl, FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormsModule, FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { DataService } from 'src/app/app.data';
 
 
 
@@ -19,15 +19,20 @@ export class KakeiboComponent {
   data: Array<any>;
   checkValue1 = false // 検索
 
+
   // kakeibo の初期値
   /** ユーザ情報登録フォーム */
   myKakeiboForm: FormGroup;
+  kamokus = [];
+  kouzas = [];
 
   constructor(
     private productService: ProductService,  // サーバー側に連絡
-    private router: Router,
+    private dataKamoku: DataService,
+    private dataKouza: DataService,
     private builder: FormBuilder             // formを設定
   ) {
+   
 
     this.myKakeiboForm = this.builder.group({
         p_date: [''],
@@ -36,12 +41,14 @@ export class KakeiboComponent {
         ],Validators.required)
 
     });
+    this.kamokus = this.dataKamoku.getKamokuData()
+    this.kouzas = this.dataKouza.getKouzaData()
 
   }
 
 
   ngOnInit() {
-
+ 
 
   }
   /**
@@ -53,10 +60,10 @@ export class KakeiboComponent {
     return  this.builder.group({
       kakeiboTime: [''],
       kakeiboKamoku: [''],
-      kakeboDetail: [''],
-      kakeboEtc: [''],
-      kakeboPayKbn: [''],
-      kakeboKingaku: [''],
+      kakeiboDetail: [''],
+      kakeiboEtc: [''],
+      kakeiboPayKbn: [''],
+      kakeiboKingaku: [''],
     });
   }
 
@@ -85,7 +92,7 @@ export class KakeiboComponent {
    */
    removeKakeibo(index: number) {
     // Getter を用意したいので「this.kakeibos」でアクセス可能
-    debugger
+   
     this.kakeibos.removeAt(index);
   }
 
@@ -101,7 +108,7 @@ export class KakeiboComponent {
       return;
     }
 
-    this.productService.kakeibo(myKakeiboForm).subscribe(
+    this.productService.regKakeibo(myKakeiboForm).subscribe(
       (result) => {
         console.log("Success!")
         // this.router.navigate(['/login'])
@@ -116,7 +123,7 @@ export class KakeiboComponent {
   // 該当日付の日記情報を取得してくる 
   serch(myKakeiboForm) {
 
-    const productsObservable = this.productService.getDairy(myKakeiboForm.p_date.value)
+    const productsObservable = this.productService.getKakeibo(myKakeiboForm.p_date.value)
     productsObservable.subscribe(
       (result) => {
         this.checkValue1 = true

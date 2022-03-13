@@ -23,13 +23,13 @@ export class ProductService {
   }
 
   // 家計簿情報更新
-  kakeibo(userData: any): Observable<any> {
-    return
-    // return this.http.post('/api/v1/diaries/register' , userData.value)
+  regKakeibo(userData: any): Observable<any> {
+    debugger
+    return this.http.post('/api/v1/kakeibos/register' , userData.value)
   }
  
   // 家計簿情報検索
-  getkakeibo(p_date: string): Observable<any> {
-     return this.http.get('/api/v1/diaries/' + p_date)
+  getKakeibo(p_date: string): Observable<any> {
+     return this.http.get('/api/v1/kakeibos/' + p_date)
   }
 }

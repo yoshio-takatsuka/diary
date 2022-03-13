@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';    // 非同期の対応 https://angular.jp
 import { filter } from 'rxjs/operators'
 import { LocationStrategy, PlatformLocation, Location, DOCUMENT } from '@angular/common';
 import { NavbarComponent } from './common/navbar/navbar.component';
+import { DataService, KamokuItem } from './app.data';
 
 
 @Component({
@@ -15,8 +16,18 @@ import { NavbarComponent } from './common/navbar/navbar.component';
 export class AppComponent implements OnInit {
     private _router: Subscription;
     @ViewChild(NavbarComponent) navbar: NavbarComponent;
+    // data: KamokuItem[];  // 科目一覧
 
-    constructor(private renderer: Renderer2, private router: Router, @Inject(DOCUMENT,) private document: any, private element: ElementRef, public location: Location) { }
+    constructor(
+        private renderer: Renderer2, 
+        private router: Router, 
+        @Inject(DOCUMENT,) private document: any, 
+        private element: ElementRef, 
+        public location: Location,
+        @Inject(DataService) private dataService: DataService
+        ) {
+            // this.data = dataService.getKamokuData();
+         }
     ngOnInit() {
         // 
         var navbar: HTMLElement = this.element.nativeElement.children[0].children[0];

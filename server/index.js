@@ -8,6 +8,8 @@ const SampleDb = require('./sample-db')
 
 const chpcherRoutes = require('./routes/chapters')
 const dialyRoutes = require('./routes/diaries')
+const kakeiboRoutes = require('./routes/kakeibos')
+
 const userRoutes = require('./routes/users')
 const path = require('path')
 console.log('config.DB_URI=>' + config.DB_URI);
@@ -33,6 +35,7 @@ app.use(bodyParser.json())
 
 app.use('/api/v1/products', chpcherRoutes) // prodct-->chpcher
 app.use('/api/v1/diaries', dialyRoutes)
+app.use('/api/v1/kakeibos', kakeiboRoutes)
 app.use('/api/v1/users', userRoutes)
 
 

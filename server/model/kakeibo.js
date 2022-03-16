@@ -3,17 +3,17 @@
 const mongoose = require('mongoose')
 const { stringify } = require('querystring')
 const Schema = mongoose.Schema
-// const ObjectId = Schema.ObjectId;
+const ObjectId = Schema.ObjectId;
  
 const KakeiboSchema = new Schema({
-  // author: ObjectId,
-  p_date: String,          //
-  kakeiTime: String,      // 実績時刻
-  kakeiTamoku: String,   // 科目
-  kakeiDetail: String,      // 詳細
-  kakeiEtc: String,    // その他
-  kakeiPayKbn: String,      // 支払方法
-  kakeiKingaku: Number     // 金額 
+  author: ObjectId,
+  kakeiboDate: String,          //
+  kakeiboTime: String,      // 実績時刻
+  kakeiboKamoku: String,   // 科目
+  kakeiboDetail: String,      // 詳細
+  kakeiboEtc: String,    // その他
+  kakeiboPayKbn: String,      // 支払方法
+  kakeiboKingaku: Number     // 金額 
 
 })
 

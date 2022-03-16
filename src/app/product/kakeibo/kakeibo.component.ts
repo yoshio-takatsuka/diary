@@ -63,7 +63,7 @@ export class KakeiboComponent {
       kakeiboDetail: [''],
       kakeiboEtc: [''],
       kakeiboPayKbn: [''],
-      kakeiboKingaku: [''],
+      kakeiboKingaku: [0],
     });
   }
 

@@ -68,7 +68,7 @@
                                                 <td>
                                                     <div class="col">
                                                         <div class="input-group form-group-no-border">
-                                                            <select name="kakeiboKamoku" >
+                                                            <select name="kakeiboKamoku"  formControlName="kakeiboKamoku"  >
                                                                 <!--リストボックスの生成-->
                                                                 <!--<select name="animal" size="3"
                                                               [(ngModel)]="selected" (change)="show()" multiple>-->
@@ -99,7 +99,7 @@
                                                         <div class="input-group form-group-no-border">
 
 
-                                                            <select name="kakeiboPayKbn" ngModel="selected">
+                                                            <select name="kakeiboPayKbn" ngModel="selected"  formControlName="kakeiboPayKbn" >
                                                                <option value="">科目を選択してください</option>
                                                                 <option *ngFor="let item2 of kouzas" [value]="item2.kouza"
                                                                     [selected]="item2.kouza === '現金'">{{item2.kouza}}

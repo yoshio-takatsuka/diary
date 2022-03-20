@@ -70,7 +70,7 @@ router.post('/register', function (req, res) {
         }
       }, false, true);
     }
-    // データ追加
+    // データ追加 
     const diary = new Diary({ p_date, yoteiData, wakeTime, sleepTime, bzStartTime, bzEndTime, diaryData })
     diary.save(function (err) {
       if (err) {

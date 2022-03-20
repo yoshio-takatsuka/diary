@@ -1,29 +1,32 @@
+const { isNull } = require('@angular/compiler/src/output/output_ast')
 const express = require('express')
 const kakeibo = require('../model/kakeibo')
 const router = express.Router()
 const Kakeibo = require('../model/kakeibo')     // 家計簿モデル
 
+
+
+
 router.get('/:p_date', function (req, res) {
 
-  const p_date = req.body.p_date
+  const p_date = req.params.p_date
   // 家計簿情報
-  Kakeibo.find({ p_date: p_date }, function (err, foundKakeibo) {
 
+  Kakeibo.findOne({p_date: p_date }, function (err, foundKakeibo) {
     if (err) {
       return res.status(422).send({ errors: [{ title: 'Kakeibo error', detail: 'Kakeibo not found!' }] })
     }
-    if (foundKakeibo.length == 0) {
+    console.log(JSON.stringify(foundKakeibo, null, 2));
+    if (foundKakeibo === null) {
       return res.json("")
-
     } else {
-      return res.json(foundKakeibo[0])
+      return res.json(foundKakeibo)
     }
-
   })
 })
 
 router.post('/register', function (req, res) {
-  console.log(JSON.stringify(req.body, null, 2));
+  // console.log(JSON.stringify(req.body, null, 2));
 
   if (!req.body.p_date) {
     return res.status(422).send({ errors: [{ title: 'Input error', detail: '日付を入力してください！' }] })
@@ -34,28 +37,16 @@ router.post('/register', function (req, res) {
       console.log(JSON.stringify(err, null, 2));
     }
   });
- 
-
-  // データ追加　複数追加
-  req.body.kakeibos.forEach(function (value) {
-    const kakeiboDate = req.body.p_date;
-    const kakeiboTime = value.kakeiboTime;
-    const kakeiboKamoku = value.kakeiboKamoku;
-    const kakeiboDetail = value.kakeiboDetail;
-    const kakeiboEtc = value.kakeiboEtc;
-    const kakeiboPayKbn = value.kakeiboPayKbn;
-    const kakeiboKingaku = value.kakeiboKingaku;
-
-    const kakeibo_data = new Kakeibo({ kakeiboDate, kakeiboTime, kakeiboKamoku, kakeiboDetail, kakeiboEtc, kakeiboPayKbn, kakeiboKingaku })
-    console.log(JSON.stringify(kakeibo_data, null, 2));
-    kakeibo_data.save(function (err) {
+  console.log(JSON.stringify(req.body, null, 2));
+  if ( req.body.kakeibos.length !== 0 ) {
+    kakeibo.insertMany(req.body,function (err) {
 
       if (err) {
         return res.status(422).send({ errors: [{ title: 'User error', detail: 'Someting went wrong!' }] })
       }
       return res.json({ "registerd": true })
     })
-  });
+  }
 
 })
 

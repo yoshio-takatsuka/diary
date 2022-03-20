@@ -32,13 +32,13 @@ export class KakeiboComponent {
     private dataKouza: DataService,
     private builder: FormBuilder             // formを設定
   ) {
-   
+
 
     this.myKakeiboForm = this.builder.group({
-        p_date: [''],
-        kakeibos: this.builder.array([
-          this.createmyKakeibo()
-        ],Validators.required)
+      p_date: [''],
+      kakeibos: this.builder.array([
+        this.createmyKakeibo()
+      ], Validators.required)
 
     });
     this.kamokus = this.dataKamoku.getKamokuData()
@@ -48,7 +48,7 @@ export class KakeiboComponent {
 
 
   ngOnInit() {
- 
+
 
   }
   /**
@@ -57,7 +57,7 @@ export class KakeiboComponent {
   * @return 家計簿情報 FormArray
   */
   createmyKakeibo(): FormGroup {
-    return  this.builder.group({
+    return this.builder.group({
       kakeiboTime: [''],
       kakeiboKamoku: [''],
       kakeiboDetail: [''],
@@ -90,9 +90,9 @@ export class KakeiboComponent {
   /**
    * 家計簿情報 入力フォームを1行削除する
    */
-   removeKakeibo(index: number) {
+  removeKakeibo(index: number) {
     // Getter を用意したいので「this.kakeibos」でアクセス可能
-   
+
     this.kakeibos.removeAt(index);
   }
 
@@ -120,40 +120,27 @@ export class KakeiboComponent {
       }
     )
   }
-  // 該当日付の日記情報を取得してくる 
+  // 該当日付の家計簿情報を取得してくる 
   serch(myKakeiboForm) {
-
-    const productsObservable = this.productService.getKakeibo(myKakeiboForm.p_date.value)
+    // debugger
+    const productsObservable = this.productService.getKakeibo(myKakeiboForm.value.p_date)
     productsObservable.subscribe(
       (result) => {
         this.checkValue1 = true
-        if (result == "") {
-          // this.myKakeibo.get("yoteiData").patchValue("")
-          // this.myKakeibo.get("wakeTime").patchValue("")
-          // this.myKakeibo.get("sleepTime").patchValue("")
-          // this.myKakeibo.get("bzStartTime").patchValue("")
-          // this.myKakeibo.get("bzEndTime").patchValue("")
-          // this.myKakeibo.get("kakeiboData").patchValue("")
+        if (result === "") {                   // 検索なしの場合は」クリア
+          for ( let i = 0; i < this.kakeibos.length; i++ ) {
+            this.removeKakeibo(i)            
+          }
+          this.addKakeibo()                
         } else {
-          // this.myKakeibo.get("yoteiData").patchValue(result.yoteiData)
-          // this.myKakeibo.get("wakeTime").patchValue(result.wakeTime)
-          // this.myKakeibo.get("sleepTime").patchValue(result.sleepTime)
-          // this.myKakeibo.get("bzStartTime").patchValue(result.bzStartTime)
-          // this.myKakeibo.get("bzEndTime").patchValue(result.bzEndTime)
-          // this.myKakeibo.get("kakeiboData").patchValue(result.kakeiboData)
-
+          this.myKakeiboForm.get("kakeibos").patchValue(result.kakeibos)
         }
-
-
         console.log("Success!")
 
       },
       (err) => { console.error('次のエラーが発生しました: ' + err) }
     )
-
   }
-
-
 }
 
 

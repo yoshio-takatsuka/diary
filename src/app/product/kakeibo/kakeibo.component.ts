@@ -127,12 +127,18 @@ export class KakeiboComponent {
     productsObservable.subscribe(
       (result) => {
         this.checkValue1 = true
+        let wk_cnt = this.kakeibos.length
+        for ( let i = 0; i < wk_cnt; i++ ) {
+          this.removeKakeibo(0)            
+        }
         if (result === "") {                   // 検索なしの場合は」クリア
-          for ( let i = 0; i < this.kakeibos.length; i++ ) {
-            this.removeKakeibo(i)            
-          }
           this.addKakeibo()                
         } else {
+          let wk_cnt = result.kakeibos.length
+          for ( let i = 0; i < wk_cnt; i++ ) {
+            this.addKakeibo()            
+          }
+
           this.myKakeiboForm.get("kakeibos").patchValue(result.kakeibos)
         }
         console.log("Success!")

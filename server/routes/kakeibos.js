@@ -34,10 +34,10 @@ router.post('/register', function (req, res) {
   // 指定日付データを削除し、今回データ追加
   Kakeibo.deleteMany({ "p_date": req.body.p_date }, function (err) {
     if (err) {
-      console.log(JSON.stringify(err, null, 2));
+      // console.log(JSON.stringify(err, null, 2));
     }
   });
-  console.log(JSON.stringify(req.body, null, 2));
+  console.log(JSON.stringify(req.body.p_date, null, 2));
   if ( req.body.kakeibos.length !== 0 ) {
     kakeibo.insertMany(req.body,function (err) {
 

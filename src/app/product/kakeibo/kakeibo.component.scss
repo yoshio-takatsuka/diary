@@ -1,6 +1,8 @@
 .table {
   border: "1";
   width: "200px";
+  height: 200px;
+  overflow-y: scroll;
 }
 .card {
   background-color: #aab44a;
@@ -16,21 +18,4 @@
       }
   }
 }
-.section-image{
-    .card-kakeibo{
-        margin-top: 0;
-    }
-}
 
-.card label {
-  margin-top: 15px; }
-
-.card .title {
-  color: #501a07;
-  text-align: center; }
-
-.card .btn {
-  margin-top: 30px; }
-
-.card .forgot {
-  text-align: center; }

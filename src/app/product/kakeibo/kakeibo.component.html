@@ -1,21 +1,16 @@
 <div class="wrapper">
-
     <!-- assets/img/clouds.png -->
-
     <div class="page-header" style="background-image: url('./assets/img/antoine-barres.jpg');">
         <div class="filter"></div>
         <div class="moving-clouds" style="background-image: url('assets/img/clouds.png'); "></div>
         <div class="container">
             <div class="row">
-
                 <div class="col-lg-4 col-sm-6 mr-auto ml-auto">
                     <!-- ↓枠定義 card-kakeibo　-->
                     <!-- <div class="card" > -->
                     <div class="card card-kakeibo" style="width: 400px;">
                         <h3 class="title">家　計　簿 20220307</h3>
-
                         <form [formGroup]="myKakeiboForm" class="register-form">
-
                             <!-- <div formGroupName="myKakeibo"> -->
                             <label>日付</label>
                             <div class="input-group form-group-no-border" style="width: 160px">
@@ -25,13 +20,13 @@
                             <button class="btn btn-danger btn-block btn-round" (click)="serch(myKakeiboForm)"
                                 type="submit">検索</button>
                             <!--  -->
-                            <table class="table" style="width: 300px">
+                            <table class="table" style="width: 100px">
                                 <thead>
                                     <tr>
                                         <!-- 1段目 -->
-                                        <th class="tr-center" style="width: 10px" rowspan="3">削除</th>
-                                        <th style="width: 60px">時刻</th>
-                                        <th style="width: auto">科目</th>
+                                        <th class="col-md-1" rowspan="3">削除</th>
+                                        <th class="col-md-3">時刻</th>
+                                        <th class="col-md-8">科目</th>
                                     </tr>
                                     <tr>
                                         <!-- 2段目 -->
@@ -42,7 +37,6 @@
                                         <!-- 3段目 -->
                                         <th colspan="3">詳細</th>
                                         <!-- <th>その他</th> -->
-
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,86 +46,61 @@
                                             <tr>
                                                 <!-- 1段目 -->
                                                 <!-- 削除ボタン -->
-                                                <td class="tr-center" rowspan="3">
+                                                <td class="col-md-1" rowspan="3">
                                                     <button class="btn btn-danger" (click)="removeKakeibo(i)">削</button>
                                                 </td>
                                                 <!-- 時刻-->
-                                                <td>
-                                                    <div class="col">
-                                                        <div class="input-group form-group-no-border">
-                                                            <input name="time" type="time" class="form-control"
-                                                                formControlName="kakeiboTime" />
-                                                        </div>
+                                                <td class="col-md-3">
+                                                    <div class="input-group form-group-no-border">
+                                                        <input name="time" type="time" class="form-control"
+                                                            formControlName="kakeiboTime" />
                                                     </div>
                                                 </td>
                                                 <!--  科目-->
-                                                <td>
-                                                    <div class="col">
-                                                        <div class="input-group form-group-no-border">
-                                                            <select name="kakeiboKamoku"  formControlName="kakeiboKamoku"  >
-                                                                <!--リストボックスの生成-->
-                                                                <!--<select name="animal" size="3"
+                                                <td class="col-md-8">
+                                                    <div class="input-group form-group-no-border">
+                                                        <select name="kakeiboKamoku" formControlName="kakeiboKamoku">
+                                                            <!--リストボックスの生成-->
+                                                            <!--<select name="animal" size="3"
                                                               [(ngModel)]="selected" (change)="show()" multiple>-->
-                                                                <option value="">科目を選択してください</option>
-                                                                <option *ngFor="let item of kamokus"
-                                                                    [value]="item.kamoku"
-                                                                    [selected]="item.kamoku === '食費'">{{item.kamoku}}
-                                                                </option>
-                                                            </select>
-                                                        </div>
+                                                            <option value="">科目を選択してください</option>
+                                                            <option *ngFor="let item of kamokus" [value]="item.kamoku"
+                                                                [selected]="item.kamoku === '食費'">{{item.kamoku}}
+                                                            </option>
+                                                        </select>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <!-- 2段目 -->
                                                 <!-- 金額-->
-                                                <td>
-                                                    <div class="col">
-                                                        <div class="input-group form-group-no-border">
-                                                            <input  name="kakeiboKingaku" type="number"
-                                                                class="form-control" formControlName="kakeiboKingaku" />
-                                                        </div>
+                                                <td class="col-md-3">
+                                                    <div class="input-group form-group-no-border">
+                                                        <input name="kakeiboKingaku" type="number" class="form-control"
+                                                            formControlName="kakeiboKingaku" />
                                                     </div>
                                                 </td>
                                                 <!-- 口座-->
-                                                <td>
-                                                    <div class="col">
-                                                        <div class="input-group form-group-no-border">
-
-
-                                                            <select name="kakeiboPayKbn" ngModel="selected"  formControlName="kakeiboPayKbn" >
-                                                               <option value="">科目を選択してください</option>
-                                                                <option *ngFor="let item2 of kouzas" [value]="item2.kouza"
-                                                                    [selected]="item2.kouza === '現金'">{{item2.kouza}}
-                                                                </option>
-                                                            </select>
-
-
-                                                        </div>
+                                                <td class="col-md-8">
+                                                    <div class="input-group form-group-no-border">
+                                                        <select name="kakeiboPayKbn" formControlName="kakeiboPayKbn">
+                                                            <option value="">口座を選択してください</option>
+                                                            <option *ngFor="let item2 of kouzas" [value]="item2.kouza"
+                                                                [selected]="item2.kouza === '現金'">{{item2.kouza}}
+                                                            </option>
+                                                        </select>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <!-- 3段目 -->
-
                                                 <!-- 細目-->
-                                                <td  colspan="3">
-                                                    <div class="col">
-                                                        <div class="input-group form-group-no-border">
-                                                            <textarea  name="kakeiboDetail" type="text" class="form-control"
-                                                                formControlName="kakeiboDetail" ></textarea>
-                                                        </div>
+                                                <td colspan="3">
+                                                    <div class="input-group form-group-no-border">
+                                                        <textarea name="kakeiboDetail" type="text" class="form-control"
+                                                            formControlName="kakeiboDetail"></textarea>
                                                     </div>
                                                 </td>
-                                                <!-- その他-->
-                                                <!-- <td>
-                                                    <div class="col">
-                                                        <div class="input-group form-group-no-border">
-                                                            <input name="kakeiboEtc" type="text" class="form-control"
-                                                                formControlName="kakeiboEtc" />
-                                                        </div>
-                                                    </div>
-                                                </td> -->
                                             </tr>
                                         </ng-container>
                                     </ng-container>

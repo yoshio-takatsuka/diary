@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule }   from '@angular/forms';
 import { KakeiboComponent } from './kakeibo/kakeibo.component';
 import { DataService } from '../app.data';
-// import { WorkComponent } from './work/work.component';
+import { WorkComponent } from './work/work.component';
 
 const routes: Routes = [
   { 
@@ -19,7 +19,7 @@ const routes: Routes = [
       { path: '', component: ProductListComponent },                            // 初期画面
       { path: 'diary', component: DiaryComponent, canActivate: [AuthGuard] },   // 日記
       { path: 'kakeibo', component: KakeiboComponent, canActivate: [AuthGuard] }, // 家計簿
-      // { path: 'work', component: WorkComponent, canActivate: [AuthGuard] },   // スキル
+      { path: 'work', component: WorkComponent, canActivate: [AuthGuard] },   // テスト
       { path: 'skill', component: DiaryComponent, canActivate: [AuthGuard] },   // スキル
     ]
   }
@@ -31,8 +31,8 @@ const routes: Routes = [
     ProductComponent,
     ProductListComponent,
     DiaryComponent,
-    // WorkComponent,
-    KakeiboComponent
+    KakeiboComponent,
+    WorkComponent
   ],
   imports: [
     RouterModule.forChild(routes),

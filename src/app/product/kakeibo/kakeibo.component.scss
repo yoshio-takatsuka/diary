@@ -1,18 +1,20 @@
-.wrapper {
-  height: auto;
-  width: auto;
-  overflow-y: scroll;
-  overflow: hidden visible;
+
+input {
+  resize: horizontal;
+  height:30px;
 }
 
+textarea {
+  resize: horizontal;
+  height:30px;
+}
 .title {
   background-color: rgb(117, 98, 73);
 }
 .table {
   border: "1";
-  width: "200px";
-  height: 200px;
   background-color: rgb(117, 98, 73);
+  overflow-y: scroll;
 
 
 }

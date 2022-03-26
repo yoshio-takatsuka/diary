@@ -12,6 +12,7 @@ import { KakeiboComponent } from './kakeibo/kakeibo.component';
 import { DataService } from '../app.data';
 import { WorkComponent } from './work/work.component';
 
+
 const routes: Routes = [
   { 
     path: 'products', component: ProductComponent,
@@ -32,13 +33,15 @@ const routes: Routes = [
     ProductListComponent,
     DiaryComponent,
     KakeiboComponent,
-    WorkComponent
+    WorkComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
+    
   ],
   providers: [
     ProductService,

@@ -3,9 +3,10 @@ import { Component, OnInit, Inject, ElementRef, ViewChild, Renderer2 } from '@an
 import { Router, NavigationEnd } from '@angular/router';                                     // https://angular.jp/api/router
 import { Subscription } from 'rxjs';    // 非同期の対応 https://angular.jp/guide/rx-library
 import { filter } from 'rxjs/operators'
-import { LocationStrategy, PlatformLocation, Location, DOCUMENT } from '@angular/common';
+import { Location, DOCUMENT } from '@angular/common';
 import { NavbarComponent } from './common/navbar/navbar.component';
-import { DataService, KamokuItem } from './app.data';
+import { DataService } from './app.data';
+import { LoadingSpinnerComponent } from './common/spinner/loading-spinner.component';
 
 
 @Component({
@@ -16,18 +17,19 @@ import { DataService, KamokuItem } from './app.data';
 export class AppComponent implements OnInit {
     private _router: Subscription;
     @ViewChild(NavbarComponent) navbar: NavbarComponent;
+    @ViewChild(LoadingSpinnerComponent) spinner: LoadingSpinnerComponent;
     // data: KamokuItem[];  // 科目一覧
 
     constructor(
-        private renderer: Renderer2, 
-        private router: Router, 
-        @Inject(DOCUMENT,) private document: any, 
-        private element: ElementRef, 
+        private renderer: Renderer2,
+        private router: Router,
+        @Inject(DOCUMENT,) private document: any,
+        private element: ElementRef,
         public location: Location,
         @Inject(DataService) private dataService: DataService
-        ) {
-            // this.data = dataService.getKamokuData();
-         }
+    ) {
+        // this.data = dataService.getKamokuData();
+    }
     ngOnInit() {
         // 
         var navbar: HTMLElement = this.element.nativeElement.children[0].children[0];

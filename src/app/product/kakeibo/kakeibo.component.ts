@@ -3,6 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ProductService } from '../shared/product.service';
 import { FormsModule, FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { DataService } from 'src/app/app.data';
+import { LoadingSpinnerService } from '../../common/loading-spinner.service';
 
 
 
@@ -30,7 +31,8 @@ export class KakeiboComponent {
     private productService: ProductService,  // サーバー側に連絡
     private dataKamoku: DataService,
     private dataKouza: DataService,
-    private builder: FormBuilder             // formを設定
+    private builder: FormBuilder,             // formを設定
+    private LoadingSpinnerService: LoadingSpinnerService
   ) {
 
 
@@ -107,42 +109,53 @@ export class KakeiboComponent {
       alert("登録をやめまーす。");
       return;
     }
+    // スピナー表示
+    this.LoadingSpinnerService.show();
 
     this.productService.regKakeibo(myKakeiboForm).subscribe(
       (result) => {
         console.log("Success!")
         // this.router.navigate(['/login'])
+        // スピナー非表示
+        this.LoadingSpinnerService.hide();
+        alert("登録");
       },
       (err: HttpErrorResponse) => {
         console.log("error")
+        // スピナー非表示
+        this.LoadingSpinnerService.hide();
         console.error(err)
         this.errors = err.error.errors
       }
+
     )
   }
   // 該当日付の家計簿情報を取得してくる 
   serch(myKakeiboForm) {
     // debugger
+            // スピナー非表示
+            this.LoadingSpinnerService.show();
     const productsObservable = this.productService.getKakeibo(myKakeiboForm.value.p_date)
     productsObservable.subscribe(
       (result) => {
         this.checkValue1 = true
         let wk_cnt = this.kakeibos.length
-        for ( let i = 0; i < wk_cnt; i++ ) {
-          this.removeKakeibo(0)            
+        for (let i = 0; i < wk_cnt; i++) {
+          this.removeKakeibo(0)
         }
         if (result === "") {                   // 検索なしの場合は」クリア
-          this.addKakeibo()                
+          this.addKakeibo()
         } else {
           let wk_cnt = result.kakeibos.length
-          for ( let i = 0; i < wk_cnt; i++ ) {
-            this.addKakeibo()            
+          for (let i = 0; i < wk_cnt; i++) {
+            this.addKakeibo()
           }
 
           this.myKakeiboForm.get("kakeibos").patchValue(result.kakeibos)
         }
         console.log("Success!")
-
+        // スピナー非表示
+        this.LoadingSpinnerService.hide();
       },
       (err) => { console.error('次のエラーが発生しました: ' + err) }
     )

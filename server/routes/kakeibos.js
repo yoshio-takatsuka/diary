@@ -16,7 +16,7 @@ router.get('/:p_date', function (req, res) {
     if (err) {
       return res.status(422).send({ errors: [{ title: 'Kakeibo error', detail: 'Kakeibo not found!' }] })
     }
-    console.log(JSON.stringify(foundKakeibo, null, 2));
+    // console.log(JSON.stringify(foundKakeibo, null, 2));
     if (foundKakeibo === null) {
       return res.json("")
     } else {
@@ -37,7 +37,7 @@ router.post('/register', function (req, res) {
       // console.log(JSON.stringify(err, null, 2));
     }
   });
-  console.log(JSON.stringify(req.body.p_date, null, 2));
+  // console.log(JSON.stringify(req.body.p_date, null, 2));
   if ( req.body.kakeibos.length !== 0 ) {
     kakeibo.insertMany(req.body,function (err) {
 

@@ -1,35 +1,44 @@
-<table class="table table-bordered border-primary">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">@</span>
-                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                  </div>
-                  
-            </td>
-            <td><textarea>Otto</textarea></td>
-            <td><textarea>@mdo</textarea></td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>
-    </tbody>
-</table>
+
+    <div class="spinner-grow text-primary" >
+        <span class="sr-only">処理中...</span>
+    </div>
+
+<!-- <div id="contents" class="d-none">
+    <img class="img-fluid img-thumbnail"
+        src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Vatican_StPeter_Square.jpg"
+        alt="Vatican StPeter Square">
+    <p>バチカンのサンピエトロ広場のパノラマ。I, 
+        <a href="/wiki/User:Dfmalan" title="User:Dfmalan">Dfmalan</a> [<a
+            href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>], <a
+            href="https://commons.wikimedia.org/wiki/File:Vatican_StPeter_Square.jpg?uselang=ja">ウィキメディア・コモンズより</a></p>
+</div>
+ -->
+<!-- Reloadボタンの表示 -->
+<!-- <div class="text-center">
+    <button class="btn btn-primary" id="reload" type="button">Reload</button>
+</div> -->
+
+
+
+<div class="wrapper">
+    <!-- assets/img/clouds.png -->
+    <div class="page-header" style="background-image: url('./assets/img/antoine-barres.jpg');">
+        <!-- <div class="filter"></div> -->
+        <div class="moving-clouds" style="background-image: url('assets/img/clouds.png'); "></div>
+        <div class="container">
+            <div *ngFor="let obj of data; index as i; 
+                  first as first; last as last; odd as odd; even as even;">
+
+
+                <div class="row">
+                    <div class="col-md-2 azure"><textarea>{{obj}} </textarea> </div>
+                    <div class="col-md-2 red"> <textarea>{{i}} </textarea></div>
+                    <div class="col-md-2 bule"><textarea> {{first ? '○' : '－'}}</textarea></div>
+                    <div class="col-md-2 ivory"><textarea> {{last ? '○' : '－'}}</textarea> </div>
+                    <div class="col-md-2 red"> <textarea>{{odd ? '○' : '－'}} </textarea></div>
+                    <div class="col-md-2 bule"><textarea>{{even ? '○' : '－'}}</textarea> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

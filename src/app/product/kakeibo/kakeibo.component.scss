@@ -1,9 +1,23 @@
+.wrapper {
+  height: auto;
+  width: auto;
+  overflow-y: scroll;
+  overflow: hidden visible;
+}
+
+.title {
+  background-color: rgb(117, 98, 73);
+}
 .table {
   border: "1";
   width: "200px";
   height: 200px;
-  overflow-y: scroll;
+  background-color: rgb(117, 98, 73);
+
+
 }
+
+
 .card {
   background-color: #aab44a;
   color: rgba(20, 13, 13, 0.274);

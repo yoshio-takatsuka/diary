@@ -9,7 +9,7 @@
                     <!-- ↓枠定義 card-kakeibo　-->
                     <!-- <div class="card" > -->
                     <!-- <div class="card card-kakeibo" style="width: 400px;"> -->
-                    <h3 class="title">家　計　簿 20220307</h3>
+                    <h3 class="title">　家　計　簿　20220307</h3>
                     <form [formGroup]="myKakeiboForm" class="register-form">
                         <!-- <div formGroupName="myKakeibo"> -->
                         <label>日付</label>
@@ -17,16 +17,19 @@
                             <input name="p_date" type="date" style="width: 100px" class="form-control"
                                 formControlName="p_date" tabindex="01">
                         </div>
-                        <button class="btn btn-danger btn-block btn-round" (click)="serch(myKakeiboForm)" type="submit"
-                            tabindex="02">検索</button>
-                        <!--  -->
-                        <button class="btn btn-danger btn-block btn-round" (click)="registerKakeibo(myKakeiboForm)"
-                            type="submit" tabindex="09">登録</button>
-                        <button class="btn btn-danger btn-block btn-round" (click)="addKakeibo()" type="submit"
-                            tabindex="08">追加</button>
+                        <div class="row">
+                            <button class="col-sm-2 btn btn-danger btn-block btn-round" (click)="serch(myKakeiboForm)"
+                                type="submit" tabindex="02">検索</button>
+                            <!--  -->
+                            <button class="col-sm-2 offset-2 btn btn-danger btn-block btn-round"
+                                (click)="registerKakeibo(myKakeiboForm)" type="submit" tabindex="09">登録</button>
+                            <button class="col-sm-2 offset-3 btn btn-danger btn-block btn-round" (click)="addKakeibo()"
+                                type="submit" tabindex="08">追加</button>
+                        </div>
+
                         <!-- </div> -->
                         <!--  -->
-                        <table class="table table-sm" style="width: 100px">
+                        <table class="table table-sm" >
                             <thead>
                                 <tr>
                                     <!-- 1段目 -->
@@ -84,7 +87,7 @@
                                             <td class="col-md-3">
                                                 <div class="input-group form-group-no-border">
                                                     <input name="kakeiboKingaku" type="number" class="form-control"
-                                                        formControlName="kakeiboKingaku" tabindex="05" />
+                                                        formControlName="kakeiboKingaku" tabindex="05" style ="text-align: right;" />
                                                 </div>
                                             </td>
                                             <!-- 口座-->

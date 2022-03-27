@@ -13,7 +13,6 @@ const KakeiboSchema = new Schema({
       kakeiboTime: String,      // 実績時刻
       kakeiboKamoku: String,   // 科目
       kakeiboDetail: String,      // 詳細
-      kakeiboEtc: String,    // その他
       kakeiboPayKbn: String,      // 支払方法
       kakeiboKingaku: Number     // 金額 
      }

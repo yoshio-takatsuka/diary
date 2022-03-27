@@ -5,10 +5,6 @@ import { FormsModule, FormGroup, FormArray, FormBuilder, Validators } from '@ang
 import { DataService } from 'src/app/app.data';
 import { LoadingSpinnerService } from '../../common/loading-spinner.service';
 
-
-
-
-
 @Component({
   selector: 'app-kakeibo',
   templateUrl: './kakeibo.component.html',
@@ -34,8 +30,6 @@ export class KakeiboComponent {
     private builder: FormBuilder,             // formを設定
     private LoadingSpinnerService: LoadingSpinnerService
   ) {
-
-
     this.myKakeiboForm = this.builder.group({
       p_date: [''],
       kakeibos: this.builder.array([
@@ -48,10 +42,7 @@ export class KakeiboComponent {
 
   }
 
-
   ngOnInit() {
-
-
   }
   /**
   * formArrayName を取得するために必要な Getter
@@ -63,7 +54,6 @@ export class KakeiboComponent {
       kakeiboTime: [''],
       kakeiboKamoku: [''],
       kakeiboDetail: [''],
-      kakeiboEtc: [''],
       kakeiboPayKbn: [''],
       kakeiboKingaku: [0],
     });

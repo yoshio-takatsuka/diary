@@ -6,12 +6,13 @@ const Kakeibo = require('../model/kakeibo')     // 家計簿モデル
 
 
 
-
+// 指定日のデータ取得
 router.get('/:p_date', function (req, res) {
 
   const p_date = req.params.p_date
-  // 家計簿情報
 
+  // 家計簿情報（当日明細）
+  // Step1 口座の残高を取得
   Kakeibo.findOne({p_date: p_date }, function (err, foundKakeibo) {
     if (err) {
       return res.status(422).send({ errors: [{ title: 'Kakeibo error', detail: 'Kakeibo not found!' }] })

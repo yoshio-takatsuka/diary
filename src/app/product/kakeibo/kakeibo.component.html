@@ -1,3 +1,4 @@
+
 <div class="wrapper">
     <!-- assets/img/clouds.png -->
     <div class="page-header" style="background-image: url('./assets/img/antoine-barres.jpg');">
@@ -13,14 +14,26 @@
                     <form [formGroup]="myKakeiboForm" class="register-form">
                         <!-- <div formGroupName="myKakeibo"> -->
                         <label>日付</label>
-                        <div class="input-group form-group-no-border" style="width: 160px">
-                            <input name="p_date" type="date" style="width: 100px" class="form-control"
-                                formControlName="p_date" tabindex="01">
+
+                        <div class="input-group mb-3 form-group-no-border" style="width: 160px">
+                            <input name="p_date" type="date" class="form-control" formControlName="p_date"
+                                tabindex="01">
+                            <button class="btn btn-outline-secondary" style="color: whitesmoke;background-color: red;"
+                                (click)="serch(myKakeiboForm)" type="submit" tabindex="02">検索</button>
+
                         </div>
+                        <!-- 残高リスト -->
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>残高リスト</option>
+                            <option value="1">今日の出金額</option>
+                            <option value="2">現金残高   \2,890</option>
+                            <option value="3">銀行残高   \12,890</option>
+                          </select>
+
+                        <!-- 更新　追加　ボタン -->
+
                         <div class="row">
-                            <button class="col-sm-2 btn btn-danger btn-block btn-round" (click)="serch(myKakeiboForm)"
-                                type="submit" tabindex="02">検索</button>
-                            <!--  -->
+
                             <button class="col-sm-2 offset-1 btn btn-danger btn-block btn-round"
                                 (click)="registerKakeibo(myKakeiboForm)" type="submit" tabindex="09">登録</button>
                             <button class="col-sm-2 offset-2 btn btn-danger btn-block btn-round" (click)="addKakeibo()"
@@ -29,7 +42,7 @@
 
                         <!-- </div> -->
                         <!--  -->
-                        <table class="table table-sm" >
+                        <table class="table table-sm">
                             <thead>
                                 <tr>
                                     <!-- 1段目 -->
@@ -87,7 +100,8 @@
                                             <td class="col-md-3">
                                                 <div class="input-group form-group-no-border">
                                                     <input name="kakeiboKingaku" type="number" class="form-control"
-                                                        formControlName="kakeiboKingaku" tabindex="05" style ="text-align: right;" />
+                                                        formControlName="kakeiboKingaku" tabindex="05"
+                                                        style="text-align: right;" />
                                                 </div>
                                             </td>
                                             <!-- 口座-->
@@ -134,3 +148,6 @@
         </div>
     </div>
 </div>
+
+
+  

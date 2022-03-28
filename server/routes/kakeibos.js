@@ -11,8 +11,12 @@ router.get('/:p_date', function (req, res) {
 
   const p_date = req.params.p_date
 
+  // 家計簿情報（集計）
+  // Step1 口座の種別を取得
+  // Step2 口座の残高を取得
+  // Step3 今日までの残高を計算
+
   // 家計簿情報（当日明細）
-  // Step1 口座の残高を取得
   Kakeibo.findOne({p_date: p_date }, function (err, foundKakeibo) {
     if (err) {
       return res.status(422).send({ errors: [{ title: 'Kakeibo error', detail: 'Kakeibo not found!' }] })

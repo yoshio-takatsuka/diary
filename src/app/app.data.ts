@@ -26,7 +26,7 @@ export class DataService {
             { id:  9, kamoku: '出:トリニータ',kbn:"出" },
             { id: 10, kamoku: '出:交際費',kbn:"出" },
             { id: 11, kamoku: '出:娯楽費',kbn:"出" },
-            { id: 12, kamoku: '出:口座' ,kbn:"出"},
+            { id: 12, kamoku: '振:口座' ,kbn:"出"},
             { id: 13, kamoku: '入:入金',kbn:"入" },
             { id: 14, kamoku: '残:残高',kbn:"残" },
         ];

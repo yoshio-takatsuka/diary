@@ -38,9 +38,9 @@ export class DataService {
             { id: 3, kouza: 'Suica'},
             { id: 4, kouza: 'JCB'},
             { id: 5, kouza: 'Paypay'},
-            { id: 7, kouza: 'Paypay銀行'},
-            { id: 8, kouza: '三井住友銀行'},
-            { id: 9, kouza: '郵便局'},
+            { id: 6, kouza: 'Paypay銀行'},
+            { id: 7, kouza: '三井住友銀行'},
+            { id: 8, kouza: '郵便局'},
 
         ];
     }

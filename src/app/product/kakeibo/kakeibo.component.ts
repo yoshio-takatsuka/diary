@@ -147,7 +147,12 @@ export class KakeiboComponent {
         // スピナー非表示
         this.LoadingSpinnerService.hide();
       },
-      (err) => { console.error('次のエラーが発生しました: ' + err) }
+      (err) => { 
+        console.error('次のエラーが発生しました: ' + err) 
+        // スピナー非表示
+        this.LoadingSpinnerService.hide();
+      }
+
     )
   }
 }

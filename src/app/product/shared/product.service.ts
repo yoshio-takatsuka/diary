@@ -27,10 +27,17 @@ export class ProductService {
     // debugger
     return this.http.post('/api/v1/kakeibos/register' , userData.value)
   }
- 
   // 家計簿情報検索
   getKakeibo(p_date: string): Observable<any> {
     // debugger
      return this.http.get('/api/v1/kakeibos/' + p_date)
   }
+
+  // 家計簿情報検索
+  conver(): Observable<any> {
+    debugger
+     return this.http.post('/api/v1/kakeibos/conver', "yoshio")
+  }
+
+
 }

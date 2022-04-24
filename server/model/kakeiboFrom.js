@@ -5,16 +5,18 @@ const { stringify } = require('querystring')
 const Schema = mongoose.Schema
 const ObjectId = Schema.ObjectId;
 
-const KakeiboSchema = new Schema({
+const KakeiboFromSchema = new Schema({
   _id: ObjectId,
   p_date: String,          //
-  No: Number,      // 実績時刻
+  kakeibos:[{
   kakeiboTime: String,      // 実績時刻
   kakeiboKamoku: String,   // 科目
   kakeiboDetail: String,      // 詳細
   kakeiboPayKbn: String,      // 支払方法
-  kakeiboKingaku: Number     // 金額 
+  kakeiboKingaku: Number     // 金額   
+  }]
+
 
 })
 
-module.exports = mongoose.model('Kakeibo', KakeiboSchema)
+module.exports = mongoose.model('KakeiboFroms', KakeiboFromSchema)

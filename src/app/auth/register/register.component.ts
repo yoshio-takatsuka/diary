@@ -19,15 +19,16 @@ export class RegisterComponent implements OnInit {
   ngOnInit() { }
 
   register(registerForm) {
-    this.authService.register(registerForm.value).subscribe(
-      (result) => {
-        console.log("Success!")
-        this.router.navigate(['/login'])
-      },
-      (err: HttpErrorResponse) => {
-        console.error(err)
-        this.errors = err.error.errors
-      }
-    )
+    alert("現在は登録できません！")
+    // this.authService.register(registerForm.value).subscribe(
+    //   (result) => {
+    //     console.log("Success!")
+    //     this.router.navigate(['/login'])
+    //   },
+    //   (err: HttpErrorResponse) => {
+    //     console.error(err)
+    //     this.errors = err.error.errors
+    //   }
+    // )
   }
 }

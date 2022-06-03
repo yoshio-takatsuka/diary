@@ -19,7 +19,7 @@
                             <div>
                                 <label>日付</label>
                                 <div class="input-group form-group-no-border">
-                                    <input  name="p_date" type="date" class="form-control" [formControl]="p_date" >
+                                    <input  name="p_date" type="date" class="form-control" [formControl]="p_date"  (change)="serch(myDiary)">
                                 </div> 
                                 <button class="btn btn-danger btn-block btn-round" (click)="serch(myDiary)"
                                     type="submit">検索</button>

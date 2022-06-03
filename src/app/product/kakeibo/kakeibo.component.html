@@ -9,25 +9,27 @@
                     <!-- ↓枠定義 card-kakeibo　-->
                     <!-- <div class="card" > -->
                     <!-- <div class="card card-kakeibo" style="width: 400px;"> -->
-                    <h3 class="title">　家　計　簿　20220425</h3>
+                    <h3 class="title">  家　計　簿　20220425</h3>
                     <form [formGroup]="myKakeiboForm" class="register-form">
                         <!-- <div formGroupName="myKakeibo"> -->
                         <label>日付</label>
 
-                        <div class="input-group mb-3 form-group-no-border" style="width: 160px">
+                        <div class="input-group mb-3 form-group-no-border" style="width: 180px">
                             <input name="p_date" type="date" class="form-control" formControlName="p_date"
-                                tabindex="01">
+                                tabindex="01"  (change)="serch(myKakeiboForm)">
                             <button class="btn btn-outline-secondary" style="color: whitesmoke;background-color: red;"
                                 (click)="serch(myKakeiboForm)" type="submit" tabindex="02">検索</button>
 
                         </div>
                         <!-- 残高リスト -->
-                        <select class="form-select" aria-label="Default select example">
+                        <!-- <select name="zanList"  formControlName="zanList" class="form-select" aria-label="Default select example">
                             <option selected>残高リスト</option>
                             <option value="1">今日の出金額</option>
                             <option value="2">現金残高 \2,890</option>
                             <option value="3">銀行残高 \12,890</option>
-                        </select>
+                        </select> -->
+                        <textarea name="zanList" type="text" class="form-control" readonly="true" 
+                        formControlName="zanList" ></textarea>
 
                         <!-- 更新　追加　ボタン -->
 

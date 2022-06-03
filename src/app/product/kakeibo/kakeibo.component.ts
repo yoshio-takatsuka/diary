@@ -32,6 +32,7 @@ export class KakeiboComponent {
   ) {
     this.myKakeiboForm = this.builder.group({
       p_date: [''],
+      zanList: [''],
       kakeibos: this.builder.array([
         this.createmyKakeibo()
       ], Validators.required)
@@ -90,7 +91,7 @@ export class KakeiboComponent {
 
   // formの日記、家計簿、スキル情報を更新する 
   registerKakeibo(myKakeiboForm) {
-
+    debugger
     let res = confirm("登録してもいいですかー？");
     if (res == true) {
     }
@@ -122,7 +123,7 @@ export class KakeiboComponent {
   }
   // 該当日付の家計簿情報を取得してくる 
   serch(myKakeiboForm) {
-    // debugger
+    debugger
             // スピナー非表示
             this.LoadingSpinnerService.show();
     const productsObservable = this.productService.getKakeibo(myKakeiboForm.value.p_date)

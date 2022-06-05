@@ -3,6 +3,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ProductService } from '../shared/product.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { newArray } from '@angular/compiler/src/util';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-diary',
@@ -50,7 +52,8 @@ export class DiaryComponent {
   constructor(
     private productService: ProductService,
     private router: Router,
-    private builder: FormBuilder
+    private builder: FormBuilder,
+    public datePipe: DatePipe  
 
   ) {
   }
@@ -60,7 +63,6 @@ export class DiaryComponent {
 
     // 最初に動く処理
     // 検索のみ可とする
-
 
   }
 
@@ -88,10 +90,31 @@ export class DiaryComponent {
       }
     )
   }
-  // 該当日付の日記情報を取得してくる 
-  serch(myDiary) {
+  beforeDay(myDiary){
+    // 前日計算
+    let dt = new Date(this.p_date.value);
+    dt.setDate(dt.getDate() - 1);
+    this.myDiary.get("p_date").patchValue(this.datePipe.transform(dt, "yyyy-MM-dd"))
+    // 検索処理
+    this.search(this.p_date.value)
 
-    const productsObservable = this.productService.getDairy(this.p_date.value)
+  }
+  nowDay(myDiary){
+    // 検索処理
+    this.search(this.p_date.value)
+  }
+  afterDay(myDiary){
+    // 翌日計算
+    let dt = new Date(this.p_date.value);
+    dt.setDate(dt.getDate() + 1);
+    this.myDiary.get("p_date").patchValue(this.datePipe.transform(dt, "yyyy-MM-dd"))
+    // 検索処理
+    this.search(this.p_date.value)
+  }  
+  // 該当日付の日記情報を取得してくる 
+  search(paraDate) {
+
+    const productsObservable = this.productService.getDairy(paraDate)
     productsObservable.subscribe(
       (result) => {
         this.checkValue1 = true

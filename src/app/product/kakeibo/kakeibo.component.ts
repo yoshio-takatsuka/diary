@@ -4,6 +4,7 @@ import { ProductService } from '../shared/product.service';
 import { FormsModule, FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { DataService } from 'src/app/app.data';
 import { LoadingSpinnerService } from '../../common/loading-spinner.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-kakeibo',
@@ -28,7 +29,8 @@ export class KakeiboComponent {
     private dataKamoku: DataService,
     private dataKouza: DataService,
     private builder: FormBuilder,             // formを設定
-    private LoadingSpinnerService: LoadingSpinnerService
+    private LoadingSpinnerService: LoadingSpinnerService,
+    public datePipe: DatePipe  
   ) {
     this.myKakeiboForm = this.builder.group({
       p_date: [''],
@@ -91,7 +93,6 @@ export class KakeiboComponent {
 
   // formの日記、家計簿、スキル情報を更新する 
   registerKakeibo(myKakeiboForm) {
-    debugger
     let res = confirm("登録してもいいですかー？");
     if (res == true) {
     }
@@ -121,12 +122,35 @@ export class KakeiboComponent {
 
     )
   }
+
+  beforeDay(myKakeiboForm){
+    // 前日計算
+    let dt = new Date(myKakeiboForm.value.p_date);
+    dt.setDate(dt.getDate() - 1);
+    this.myKakeiboForm.get("p_date").patchValue(this.datePipe.transform(dt, "yyyy-MM-dd"))
+    // 検索処理
+    this.search(myKakeiboForm.value.p_date)
+
+  }
+  nowDay(myKakeiboForm){
+    // 検索処理
+    this.search(myKakeiboForm.value.p_date)
+  }
+  afterDay(myKakeiboForm){
+    // 翌日計算
+    let dt = new Date(myKakeiboForm.value.p_date);
+    dt.setDate(dt.getDate() + 1);
+    this.myKakeiboForm.get("p_date").patchValue(this.datePipe.transform(dt, "yyyy-MM-dd"))
+    // 検索処理
+    this.search(myKakeiboForm.value.p_date)
+  }  
+
   // 該当日付の家計簿情報を取得してくる 
-  serch(myKakeiboForm) {
+  search(paraDate) {
     debugger
             // スピナー非表示
             this.LoadingSpinnerService.show();
-    const productsObservable = this.productService.getKakeibo(myKakeiboForm.value.p_date)
+    const productsObservable = this.productService.getKakeibo(paraDate)
     productsObservable.subscribe(
       (result) => {
         this.checkValue1 = true

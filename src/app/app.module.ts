@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; //スピナー追加
 import { LoadingSpinnerComponent } from './common/spinner/loading-spinner.component';
-
+import { DatePipe } from '@angular/common';
 
 // 全体構成
 //  AppComponent
@@ -17,7 +17,8 @@ import { LoadingSpinnerComponent } from './common/spinner/loading-spinner.compon
   declarations: [
     AppComponent,
     NavbarComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -27,7 +28,7 @@ import { LoadingSpinnerComponent } from './common/spinner/loading-spinner.compon
     FormsModule,
     MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [DatePipe ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,42 @@
+// MongoDB Playground
+// To disable this template go to Settings | MongoDB | Use Default Template For Playground.
+// Make sure you are connected to enable completions and to be able to run a playground.
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+// Select the database to use.
+use('test');
+
+// The drop() command destroys all data from a collection.
+// Make sure you run it against the correct database and collection.
+db.codes.drop();
+
+// Insert a few documents into the sales collection.
+db.codes.insertMany([
+            { codeKbn:'kamoku',id:  1, kamoku: '出:水道光熱費',kbn:"出"},
+            { codeKbn:'kamoku',id:  2, kamoku: '出:通信料',kbn:"出" },
+            { codeKbn:'kamoku',id:  3, kamoku: '出:習い事',kbn:"出" },
+            { codeKbn:'kamoku',id:  4, kamoku: '出:交通費',kbn:"出"},
+            { codeKbn:'kamoku',id:  5, kamoku: '出:食費',kbn:"出" },
+            { codeKbn:'kamoku',id:  6, kamoku: '出:外食費' ,kbn:"出"},
+            { codeKbn:'kamoku',id:  7, kamoku: '出:日用品費' ,kbn:"出"},
+            { codeKbn:'kamoku',id:  8, kamoku: '出:医療費' ,kbn:"出"},
+            { codeKbn:'kamoku',id:  9, kamoku: '出:トリニータ',kbn:"出" },
+            { codeKbn:'kamoku',id: 10, kamoku: '出:交際費',kbn:"出" },
+            { codeKbn:'kamoku',id: 11, kamoku: '出:娯楽費',kbn:"出" },
+            { codeKbn:'kamoku',id: 12, kamoku: '振:口座' ,kbn:"出"},
+            { codeKbn:'kamoku',id: 13, kamoku: '入:入金',kbn:"入" },
+            { codeKbn:'kamoku',id: 14, kamoku: '残:残高',kbn:"残" },
+            { codeKbn:'kouza',id: 1, kouza: '現金' },
+            { codeKbn:'kouza',id: 2, kouza: 'WAON'},
+            { codeKbn:'kouza',id: 3, kouza: 'Suica'},
+            { codeKbn:'kouza',id: 4, kouza: 'JCB'},
+            { codeKbn:'kouza',id: 5, kouza: 'Paypay'},
+            { codeKbn:'kouza',id: 6, kouza: 'Paypay銀行'},
+            { codeKbn:'kouza',id: 7, kouza: '三井住友銀行'},
+            { codeKbn:'kouza',id: 8, kouza: '郵便局'}
+
+]);
+
+// Run a find command to view items sold on April 4th, 2014.
+db.codes.find();
+

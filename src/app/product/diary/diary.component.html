@@ -19,11 +19,14 @@
                             <div>
                                 <label>日付</label>
                                 <div class="input-group form-group-no-border">
-                                    <input  name="p_date" type="date" class="form-control" [formControl]="p_date"  (change)="serch(myDiary)">
+                                    <input  name="p_date" type="date" class="form-control" [formControl]="p_date"  (change)="nowDay(myDiary)">
+
                                 </div> 
-                                <button class="btn btn-danger btn-block btn-round" (click)="serch(myDiary)"
+                                <button type="button" class="btn btn-primary" (click)="beforeDay(myDiary)">←</button>
+                                <button class="btn btn-danger btn-block btn-round" (click)="nowDay(myDiary)"
                                     type="submit">検索</button>
-                            </div>
+                                <button type="button"  class="btn btn-primary" (click)="afterDay(myDiary)">→</button>
+                                </div>
                             <!-- checkValue1:false 明細部＆登録ボタン非表示  -->
                             <div  >
 

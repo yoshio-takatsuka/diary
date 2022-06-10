@@ -46,6 +46,11 @@ export class KakeiboComponent {
   }
 
   ngOnInit() {
+    let dt = new Date();
+    this.myKakeiboForm.get("p_date").patchValue(this.datePipe.transform(dt, "yyyy-MM-dd"))
+    // 検索処理
+    this.search(this.myKakeiboForm.value.p_date)
+  
   }
   /**
   * formArrayName を取得するために必要な Getter

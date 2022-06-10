@@ -63,6 +63,12 @@ export class DiaryComponent {
 
     // 最初に動く処理
     // 検索のみ可とする
+    // 今日
+    let dt = new Date();
+    this.myDiary.get("p_date").patchValue(this.datePipe.transform(dt, "yyyy-MM-dd"))
+    // 検索処理
+    this.search(this.p_date.value)
+
 
   }
 
